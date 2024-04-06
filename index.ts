@@ -1,7 +1,6 @@
 import dotenv from 'dotenv';
 import express, { Application, Express, Request, Response } from 'express';
 
-//For env File
 dotenv.config();
 
 const app: Application = express();
