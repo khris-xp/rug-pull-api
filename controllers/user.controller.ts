@@ -17,6 +17,44 @@ declare global {
 }
 
 const userController = {
+  /**
+   * @swagger
+   * /api/auth/register:
+   *   post:
+   *     summary: Register a new user
+   *     tags: [User]
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             type: object
+   *             properties:
+   *               firstName:
+   *                 type: string
+   *               lastName:
+   *                 type: string
+   *               email:
+   *                 type: string
+   *               password:
+   *                 type: string
+   *               pictureProfile:
+   *                 type: string
+   *               age:
+   *                 type: number
+   *     responses:
+   *       '200':
+   *         description: Register successfully
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: object
+   *               properties:
+   *                 accessToken:
+   *                   type: string
+   *       '400':
+   *         description: Email already exists
+   */
   register: async (request: Request, response: Response) => {
     try {
       const { firstName, lastName, email, password, pictureProfile, age } =
@@ -52,6 +90,36 @@ const userController = {
       handleError(response, error);
     }
   },
+  /**
+   * @swagger
+   * /api/auth/login:
+   *   post:
+   *     summary: Login user
+   *     tags: [User]
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             type: object
+   *             properties:
+   *               email:
+   *                 type: string
+   *               password:
+   *                 type: string
+   *     responses:
+   *       '200':
+   *         description: Login successfully
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: object
+   *               properties:
+   *                 accessToken:
+   *                   type: string
+   *       '400':
+   *         description: User does not exist
+   */
   login: async (request: Request, response: Response) => {
     try {
       const { email, password } = request.body;
@@ -109,6 +177,51 @@ const userController = {
       handleError(response, error);
     }
   },
+  /**
+   * @swagger
+   * /api/auth/profile:
+   *   get:
+   *     summary: Get user profile
+   *     tags: [User]
+   *     security:
+   *        - Authorization: []
+   * 
+   *     responses:
+   *       '200':
+   *         description: Get user profile successfully
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: object
+   *               properties:
+   *                 user:
+   *                   type: object
+   *                   properties:
+   *                     _id:
+   *                       type: string
+   *                     firstName:
+   *                       type: string
+   *                     lastName:
+   *                       type: string
+   *                     email:
+   *                       type: string
+   *                     pictureProfile:
+   *                       type: string
+   *                     age:
+   *                       type: number
+   *                     role:
+   *                       type: string
+   *                     point:
+   *                       type: number
+   *                     createdAt:
+   *                       type: string
+   *                     updatedAt:
+   *                       type: string
+   *       '400':
+   *         description: User does not exist
+   *       '404':
+   *         description: User not found
+   */
   getUserProfile: async (request: Request, response: Response) => {
     try {
       const userId = request.user?._id;

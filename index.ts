@@ -1,14 +1,15 @@
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import express, { Application, Request, Response } from 'express';
+import express, { Express, Request, Response } from 'express';
 import fileUpload from 'express-fileupload';
 import mongoose from 'mongoose';
 import userRouter from './routes/user.route';
+import { swaggerSetup } from './swagger';
 
 dotenv.config();
 
-const app: Application = express();
+const app: Express = express();
 const port = process.env.PORT || 8000;
 const URL = process.env.MONGO_URL;
 
@@ -30,7 +31,9 @@ app.listen(port, () => {
   console.log(`Server is Fire at http://localhost:${port}`);
 });
 
-app.use('/api', userRouter);
+swaggerSetup(app);
+
+app.use('/api/auth', userRouter);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
