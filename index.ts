@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import express, { Express, Request, Response } from 'express';
 import fileUpload from 'express-fileupload';
 import mongoose from 'mongoose';
+import topicRouter from './routes/topic.route';
 import userRouter from './routes/user.route';
 import { swaggerSetup } from './swagger';
 
@@ -34,6 +35,7 @@ app.listen(port, () => {
 swaggerSetup(app);
 
 app.use('/api/auth', userRouter);
+app.use('/api/topics', topicRouter);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
