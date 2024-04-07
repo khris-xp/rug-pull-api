@@ -1,5 +1,6 @@
 import { UpdateWriteOpResult } from 'mongoose';
 import { AuthResponseType } from './auth.type';
+import { CategoryType } from './category.type';
 import { TopicType } from './topic.type';
 import { UserType } from './user.type';
 
@@ -12,6 +13,8 @@ export type DataResponseType = {
     | UserType
     | TopicType[]
     | TopicType
+    | CategoryType[]
+    | CategoryType
     | AuthResponseType
     | UpdateWriteOpResult
     | null;
@@ -22,6 +25,8 @@ export type DataType =
   | UserType
   | TopicType[]
   | TopicType
+  | CategoryType[]
+  | CategoryType
   | UpdateWriteOpResult
   | AuthResponseType
   | null;
