@@ -3,10 +3,11 @@ import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import User from '../models/user.model';
 import UserRepository from '../repositories/user.repository';
-import { UpdateUserType, UserType } from '../types/user.type';
+import {  UserType } from '../types/user.type';
 import { handleError } from '../utils/error.utils';
 import { successResponseStatus } from '../utils/response.utils';
 import { generateTokens, setRefreshTokenCookie } from '../utils/token.utils';
+import { UserDto } from '../dto/user.dto';
 
 declare global {
   namespace Express {
@@ -185,7 +186,7 @@ const userController = {
    *     tags: [User]
    *     security:
    *        - Authorization: []
-   * 
+   *
    *     responses:
    *       '200':
    *         description: Get user profile successfully
@@ -270,7 +271,7 @@ const userController = {
         const { firstName, lastName, email, age, pictureProfile } =
           request.body;
 
-        const updatedData: UpdateUserType = {
+        const updatedData: UserDto = {
           firstName: firstName || user.firstName,
           lastName: lastName || user.lastName,
           email: email || user.email,
@@ -303,9 +304,10 @@ const userController = {
       const user = await UserRepository.findById(userId.toString());
 
       const { role } = request.body;
-      user.role = role || user.role;
-      await user.save();
-
+      if (user) {
+        user.role = role || user.role;
+        await user.save();
+      }
       return successResponseStatus(
         response,
         'Upadte user role successfully.',

@@ -13,11 +13,3 @@ export type UserType = {
   createdAt: string;
   updatedAt: string;
 };
-
-export type UpdateUserType = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  age: string;
-  pictureProfile: string;
-}
