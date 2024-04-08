@@ -5,6 +5,7 @@ import express, { Express, Request, Response } from 'express';
 import fileUpload from 'express-fileupload';
 import mongoose from 'mongoose';
 import categoryRouter from './routes/category.route';
+import statusRouter from './routes/status.route';
 import topicRouter from './routes/topic.route';
 import userRouter from './routes/user.route';
 import { swaggerSetup } from './swagger';
@@ -38,6 +39,7 @@ swaggerSetup(app);
 app.use('/api/auth', userRouter);
 app.use('/api/topics', topicRouter);
 app.use('/api/categories', categoryRouter);
+app.use('/api/statuses', statusRouter);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

@@ -1,4 +1,4 @@
-import { TopicDto } from '../dto/Topic.dto';
+import { TopicDto } from '../dto/topic.dto';
 import Topic from '../models/topic.model';
 import { FilterType } from '../types/filter.type';
 

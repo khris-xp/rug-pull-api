@@ -1,4 +1,4 @@
 export type TopicDto = {
-    title?: string;
-    description?: string;
-  }
+  title?: string;
+  description?: string;
+};
