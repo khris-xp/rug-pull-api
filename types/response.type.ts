@@ -1,6 +1,7 @@
 import { UpdateWriteOpResult } from 'mongoose';
 import { AuthResponseType } from './auth.type';
 import { CategoryType } from './category.type';
+import { RoomType } from './room.type';
 import { StatusType } from './status.type';
 import { TableType } from './table.type';
 import { TopicType } from './topic.type';
@@ -21,6 +22,8 @@ export type DataResponseType = {
     | StatusType
     | TableType[]
     | TableType
+    | RoomType[]
+    | RoomType
     | AuthResponseType
     | UpdateWriteOpResult
     | null;
@@ -37,6 +40,8 @@ export type DataType =
   | StatusType
   | TableType[]
   | TableType
+  | RoomType[]
+  | RoomType
   | UpdateWriteOpResult
   | AuthResponseType
   | null;

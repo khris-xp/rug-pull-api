@@ -5,6 +5,7 @@ import express, { Express, Request, Response } from 'express';
 import fileUpload from 'express-fileupload';
 import mongoose from 'mongoose';
 import categoryRouter from './routes/category.route';
+import roomRouter from './routes/room.route';
 import statusRouter from './routes/status.route';
 import tableRouter from './routes/table.route';
 import topicRouter from './routes/topic.route';
@@ -42,6 +43,7 @@ app.use('/api/topics', topicRouter);
 app.use('/api/categories', categoryRouter);
 app.use('/api/statuses', statusRouter);
 app.use('/api/tables', tableRouter);
+app.use('/api/rooms', roomRouter);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
