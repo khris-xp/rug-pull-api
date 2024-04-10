@@ -1,10 +1,7 @@
-import {
-  PaginationOptions,
-  SortingOptions,
-} from '../controllers/board-game.controller';
 import { BoardGameDto } from '../dto/board-game.dto';
 import BoardGame from '../models/board-game.model';
 import { FilterType } from '../types/filter.type';
+import { PaginationOptions, SortingOptions } from '../types/options.type';
 
 export default class BoardGameRepository {
   static async findAll(

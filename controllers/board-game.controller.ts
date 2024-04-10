@@ -1,17 +1,8 @@
 import { Request, Response } from 'express';
 import BoardGameRepository from '../repositories/board-game.repository';
+import { PaginationOptions, SortingOptions } from '../types/options.type';
 import { handleError } from '../utils/error.utils';
 import { successResponseStatus } from '../utils/response.utils';
-
-export interface PaginationOptions {
-  page: number;
-  limit: number;
-}
-
-export interface SortingOptions {
-  field: string;
-  order: 'asc' | 'desc';
-}
 
 const boardGameController = {
   async findAll(req: Request, res: Response) {
