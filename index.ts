@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import express, { Express, Request, Response } from 'express';
 import fileUpload from 'express-fileupload';
 import mongoose from 'mongoose';
+import boardGameRouter from './routes/board-game.route';
 import categoryRouter from './routes/category.route';
 import roomRouter from './routes/room.route';
 import statusRouter from './routes/status.route';
@@ -44,6 +45,7 @@ app.use('/api/categories', categoryRouter);
 app.use('/api/statuses', statusRouter);
 app.use('/api/tables', tableRouter);
 app.use('/api/rooms', roomRouter);
+app.use('/api/board-games', boardGameRouter);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

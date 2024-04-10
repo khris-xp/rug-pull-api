@@ -1,4 +1,4 @@
-import express, { Express, Router } from 'express';
+import express, { Router } from 'express';
 import categoryController from '../controllers/category.controller';
 import authUser from '../middlewares/auth.middleware';
 import authAdmin from '../middlewares/authAdmin.middleware';

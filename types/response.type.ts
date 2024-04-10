@@ -1,5 +1,6 @@
 import { UpdateWriteOpResult } from 'mongoose';
 import { AuthResponseType } from './auth.type';
+import { BoardGameType, CommonBoardGameType } from './board-game';
 import { CategoryType } from './category.type';
 import { RoomType } from './room.type';
 import { StatusType } from './status.type';
@@ -24,6 +25,8 @@ export type DataResponseType = {
     | TableType
     | RoomType[]
     | RoomType
+    | CommonBoardGameType
+    | BoardGameType
     | AuthResponseType
     | UpdateWriteOpResult
     | null;
@@ -42,6 +45,8 @@ export type DataType =
   | TableType
   | RoomType[]
   | RoomType
+  | CommonBoardGameType
+  | BoardGameType
   | UpdateWriteOpResult
   | AuthResponseType
   | null;
