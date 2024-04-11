@@ -6,6 +6,7 @@ import { RoomType } from './room.type';
 import { StatusType } from './status.type';
 import { TableType } from './table.type';
 import { TopicType } from './topic.type';
+import { UploadType } from './upload.type';
 import { UserType } from './user.type';
 
 export type DataResponseType = {
@@ -29,6 +30,7 @@ export type DataResponseType = {
     | BoardGameType
     | AuthResponseType
     | UpdateWriteOpResult
+    | UploadType
     | null;
 };
 
@@ -49,4 +51,5 @@ export type DataType =
   | BoardGameType
   | UpdateWriteOpResult
   | AuthResponseType
+  | UploadType
   | null;

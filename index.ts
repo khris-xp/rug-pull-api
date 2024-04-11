@@ -10,6 +10,7 @@ import roomRouter from './routes/room.route';
 import statusRouter from './routes/status.route';
 import tableRouter from './routes/table.route';
 import topicRouter from './routes/topic.route';
+import uploadRouter from './routes/upload.route';
 import userRouter from './routes/user.route';
 import { swaggerSetup } from './swagger';
 
@@ -34,7 +35,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is Fire at http://localhost:${port}`);
+  console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
 });
 
 swaggerSetup(app);
@@ -46,6 +47,7 @@ app.use('/api/statuses', statusRouter);
 app.use('/api/tables', tableRouter);
 app.use('/api/rooms', roomRouter);
 app.use('/api/board-games', boardGameRouter);
+app.use('/api/uploads', uploadRouter);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
