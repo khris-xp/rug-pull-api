@@ -10,6 +10,12 @@ bookingRouter.post('/', authUser, bookingController.create);
 bookingRouter.get('/:id', authUser, bookingController.findById);
 bookingRouter.get('/user', authUser, bookingController.findByUserId);
 bookingRouter.put('/:id', authUser, authAdmin, bookingController.update);
+bookingRouter.put(
+  '/status',
+  authUser,
+  authAdmin,
+  bookingController.updateBookingStatus
+);
 bookingRouter.delete('/:id', authUser, authAdmin, bookingController.delete);
 
 export default bookingRouter;

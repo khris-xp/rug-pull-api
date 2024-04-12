@@ -74,6 +74,20 @@ const bookingController = {
         return handleError(res, error);
       });
   },
+  updateBookingStatus(req: Request, res: Response) {
+    const { id, status } = req.body;
+    BookingRepository.update(id, status)
+      .then((booking) => {
+        return successResponseStatus(
+          res,
+          'Update booking status successfully',
+          booking
+        );
+      })
+      .catch((error) => {
+        return handleError(res, error);
+      });
+  },
   update(req: Request, res: Response) {
     BookingRepository.update(req.params.id, req.body)
       .then((booking) => {
