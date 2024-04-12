@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { request, Request, Response } from 'express';
 import BookingRepository from '../repositories/booking.repository';
 import { PaginationOptions, SortingOptions } from '../types/options.type';
 import { handleError } from '../utils/error.utils';
@@ -57,6 +57,16 @@ const bookingController = {
   },
   findById(req: Request, res: Response) {
     BookingRepository.findById(req.params.id)
+      .then((booking) => {
+        return successResponseStatus(res, 'Get booking successfully', booking);
+      })
+      .catch((error) => {
+        return handleError(res, error);
+      });
+  },
+  findByUserId(req: Request, res: Response) {
+    const user_id = request.user?._id;
+    BookingRepository.findOne({ user: user_id })
       .then((booking) => {
         return successResponseStatus(res, 'Get booking successfully', booking);
       })
