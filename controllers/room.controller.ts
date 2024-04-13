@@ -10,7 +10,7 @@ const roomController = {
         return successResponseStatus(res, 'Get rooms successfully', rooms);
       })
       .catch((error) => {
-        return handleError(res, error);
+        return handleError(500, res, error);
       });
   },
   create(req: Request, res: Response) {
@@ -19,7 +19,7 @@ const roomController = {
         return successResponseStatus(res, 'Create room successfully', room);
       })
       .catch((error) => {
-        return handleError(res, error);
+        return handleError(500, res, error);
       });
   },
   findOne(req: Request, res: Response) {
@@ -28,7 +28,7 @@ const roomController = {
         return successResponseStatus(res, 'Get room successfully', room);
       })
       .catch((error) => {
-        return handleError(res, error);
+        return handleError(500, res, error);
       });
   },
   findById(req: Request, res: Response) {
@@ -37,7 +37,7 @@ const roomController = {
         return successResponseStatus(res, 'Get room successfully', room);
       })
       .catch((error) => {
-        return handleError(res, error);
+        return handleError(500, res, error);
       });
   },
   update(req: Request, res: Response) {
@@ -46,7 +46,7 @@ const roomController = {
         return successResponseStatus(res, 'Update room successfully', room);
       })
       .catch((error) => {
-        return handleError(res, error);
+        return handleError(500, res, error);
       });
   },
   delete(req: Request, res: Response) {
@@ -55,7 +55,7 @@ const roomController = {
         return successResponseStatus(res, 'Delete room successfully', room);
       })
       .catch((error) => {
-        return handleError(res, error);
+        return handleError(500, res, error);
       });
   },
 };

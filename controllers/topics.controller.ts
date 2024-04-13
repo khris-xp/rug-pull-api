@@ -30,7 +30,7 @@ const topicController = {
       const topics = await TopicRepository.findAll();
       return successResponseStatus(response, 'Get topics successfully', topics);
     } catch (error) {
-      return handleError(response, error);
+      return handleError(500, response, error);
     }
   },
   /**
@@ -78,7 +78,7 @@ const topicController = {
         topic
       );
     } catch (error) {
-      return handleError(response, error);
+      return handleError(500, response, error);
     }
   },
 
@@ -123,7 +123,7 @@ const topicController = {
         topic
       );
     } catch (error) {
-      return handleError(response, error);
+      return handleError(500, response, error);
     }
   },
 
@@ -177,7 +177,7 @@ const topicController = {
         topic
       );
     } catch (error) {
-      return handleError(response, error);
+      return handleError(500, response, error);
     }
   },
 
@@ -219,7 +219,7 @@ const topicController = {
         topic
       );
     } catch (error) {
-      return handleError(response, error);
+      return handleError(500, response, error);
     }
   },
 };

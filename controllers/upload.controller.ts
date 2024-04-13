@@ -29,7 +29,7 @@ const uploadController = {
         result
       );
     } catch (err) {
-      handleError(response, err);
+      handleError(500, response, err);
     }
   },
 
@@ -43,7 +43,7 @@ const uploadController = {
         null
       );
     } catch (err) {
-      handleError(response, err);
+      handleError(500, response, err);
     }
   },
 };

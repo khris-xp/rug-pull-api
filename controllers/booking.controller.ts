@@ -3,6 +3,7 @@ import BookingRepository from '../repositories/booking.repository';
 import { PaginationOptions, SortingOptions } from '../types/options.type';
 import { handleError } from '../utils/error.utils';
 import { successResponseStatus } from '../utils/response.utils';
+import { RequestValidator } from '../utils/validator.utils';
 
 const bookingController = {
   async findAll(req: Request, res: Response) {
@@ -29,11 +30,12 @@ const bookingController = {
 
       return successResponseStatus(res, 'Get bookings successfully', bookings);
     } catch (error) {
-      return handleError(res, error);
+      return handleError(500, res, error);
     }
   },
 
   create(req: Request, res: Response) {
+    RequestValidator(req.body);
     BookingRepository.create(req.body)
       .then((booking) => {
         return successResponseStatus(
@@ -43,7 +45,7 @@ const bookingController = {
         );
       })
       .catch((error) => {
-        return handleError(res, error);
+        return handleError(500, res, error);
       });
   },
   findOne(req: Request, res: Response) {
@@ -52,7 +54,7 @@ const bookingController = {
         return successResponseStatus(res, 'Get booking successfully', booking);
       })
       .catch((error) => {
-        return handleError(res, error);
+        return handleError(500, res, error);
       });
   },
   findById(req: Request, res: Response) {
@@ -61,7 +63,7 @@ const bookingController = {
         return successResponseStatus(res, 'Get booking successfully', booking);
       })
       .catch((error) => {
-        return handleError(res, error);
+        return handleError(500, res, error);
       });
   },
   findByUserId(req: Request, res: Response) {
@@ -71,7 +73,7 @@ const bookingController = {
         return successResponseStatus(res, 'Get booking successfully', booking);
       })
       .catch((error) => {
-        return handleError(res, error);
+        return handleError(500, res, error);
       });
   },
   updateBookingStatus(req: Request, res: Response) {
@@ -85,7 +87,7 @@ const bookingController = {
         );
       })
       .catch((error) => {
-        return handleError(res, error);
+        return handleError(500, res, error);
       });
   },
   update(req: Request, res: Response) {
@@ -98,7 +100,7 @@ const bookingController = {
         );
       })
       .catch((error) => {
-        return handleError(res, error);
+        return handleError(500, res, error);
       });
   },
   delete(req: Request, res: Response) {
@@ -111,7 +113,7 @@ const bookingController = {
         );
       })
       .catch((error) => {
-        return handleError(res, error);
+        return handleError(500, res, error);
       });
   },
 };

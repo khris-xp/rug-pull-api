@@ -30,7 +30,7 @@ const tableController = {
       const tables = await TableRepository.findAll();
       return successResponseStatus(response, 'Get tables successfully', tables);
     } catch (error) {
-      return handleError(response, error);
+      return handleError(500, response, error);
     }
   },
   /**
@@ -76,7 +76,7 @@ const tableController = {
         table
       );
     } catch (error) {
-      return handleError(response, error);
+      return handleError(500, response, error);
     }
   },
 
@@ -113,7 +113,7 @@ const tableController = {
       const table = await TableRepository.findOne({ _id: request.params.id });
       return successResponseStatus(response, 'Get table successfully', table);
     } catch (error) {
-      return handleError(response, error);
+      return handleError(500, response, error);
     }
   },
 
@@ -170,7 +170,7 @@ const tableController = {
         table
       );
     } catch (error) {
-      return handleError(response, error);
+      return handleError(500, response, error);
     }
   },
 
@@ -213,7 +213,7 @@ const tableController = {
         table
       );
     } catch (error) {
-      return handleError(response, error);
+      return handleError(500, response, error);
     }
   },
 };

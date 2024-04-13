@@ -36,7 +36,7 @@ const statusController = {
         statuses
       );
     } catch (error) {
-      return handleError(response, error);
+      return handleError(500, response, error);
     }
   },
   /**
@@ -86,7 +86,7 @@ const statusController = {
         status
       );
     } catch (error) {
-      return handleError(response, error);
+      return handleError(500, response, error);
     }
   },
 
@@ -126,7 +126,7 @@ const statusController = {
       const status = await StatusRepository.findOne({ _id: request.params.id });
       return successResponseStatus(response, 'Get status successfully', status);
     } catch (error) {
-      return handleError(response, error);
+      return handleError(500, response, error);
     }
   },
 
@@ -186,7 +186,7 @@ const statusController = {
         status
       );
     } catch (error) {
-      return handleError(response, error);
+      return handleError(500, response, error);
     }
   },
   /**
@@ -218,7 +218,7 @@ const statusController = {
         status
       );
     } catch (error) {
-      return handleError(response, error);
+      return handleError(500, response, error);
     }
   },
 };

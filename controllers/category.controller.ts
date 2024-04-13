@@ -37,7 +37,7 @@ const categoryController = {
         categories
       );
     } catch (error) {
-      return handleError(response, error);
+      return handleError(500, response, error);
     }
   },
   /**
@@ -87,7 +87,7 @@ const categoryController = {
         category
       );
     } catch (error) {
-      return handleError(response, error);
+      return handleError(500, response, error);
     }
   },
 
@@ -133,7 +133,7 @@ const categoryController = {
         category
       );
     } catch (error) {
-      return handleError(response, error);
+      return handleError(500, response, error);
     }
   },
   /**
@@ -189,7 +189,7 @@ const categoryController = {
         category
       );
     } catch (error) {
-      return handleError(response, error);
+      return handleError(500, response, error);
     }
   },
   /**
@@ -231,7 +231,7 @@ const categoryController = {
         category
       );
     } catch (error) {
-      return handleError(response, error);
+      return handleError(500, response, error);
     }
   },
 };

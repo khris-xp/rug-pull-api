@@ -17,7 +17,7 @@ import { swaggerSetup } from './swagger';
 
 dotenv.config();
 
-const app: Express = express();
+export const app: Express = express();
 const port = process.env.PORT || 8000;
 const URL = process.env.MONGO_URL;
 

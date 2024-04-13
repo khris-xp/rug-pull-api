@@ -33,7 +33,7 @@ const boardGameController = {
         boardGames
       );
     } catch (error) {
-      return handleError(res, error);
+      return handleError(500, res, error);
     }
   },
 
@@ -47,7 +47,7 @@ const boardGameController = {
         );
       })
       .catch((error) => {
-        return handleError(res, error);
+        return handleError(500, res, error);
       });
   },
   findOne(req: Request, res: Response) {
@@ -60,7 +60,7 @@ const boardGameController = {
         );
       })
       .catch((error) => {
-        return handleError(res, error);
+        return handleError(500, res, error);
       });
   },
   findById(req: Request, res: Response) {
@@ -73,7 +73,7 @@ const boardGameController = {
         );
       })
       .catch((error) => {
-        return handleError(res, error);
+        return handleError(500, res, error);
       });
   },
   update(req: Request, res: Response) {
@@ -86,7 +86,7 @@ const boardGameController = {
         );
       })
       .catch((error) => {
-        return handleError(res, error);
+        return handleError(500, res, error);
       });
   },
   delete(req: Request, res: Response) {
@@ -99,7 +99,7 @@ const boardGameController = {
         );
       })
       .catch((error) => {
-        return handleError(res, error);
+        return handleError(500, res, error);
       });
   },
 };

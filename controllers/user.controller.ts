@@ -1,13 +1,13 @@
 import bcrypt from 'bcrypt';
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
+import { UserDto } from '../dto/user.dto';
 import User from '../models/user.model';
 import UserRepository from '../repositories/user.repository';
-import {  UserType } from '../types/user.type';
+import { UserType } from '../types/user.type';
 import { handleError } from '../utils/error.utils';
 import { successResponseStatus } from '../utils/response.utils';
 import { generateTokens, setRefreshTokenCookie } from '../utils/token.utils';
-import { UserDto } from '../dto/user.dto';
 
 declare global {
   namespace Express {
@@ -88,7 +88,7 @@ const userController = {
         accessToken,
       });
     } catch (error) {
-      handleError(response, error);
+      handleError(500, response, error);
     }
   },
   /**
@@ -145,7 +145,7 @@ const userController = {
         accessToken,
       });
     } catch (error) {
-      handleError(response, error);
+      handleError(500, response, error);
     }
   },
   refreshToken: async (request: Request, response: Response) => {
@@ -175,7 +175,7 @@ const userController = {
         accessToken,
       });
     } catch (error) {
-      handleError(response, error);
+      handleError(500, response, error);
     }
   },
   /**
@@ -237,7 +237,7 @@ const userController = {
         user
       );
     } catch (error) {
-      handleError(response, error);
+      handleError(500, response, error);
     }
   },
   getUserById: async (request: Request, response: Response) => {
@@ -252,7 +252,7 @@ const userController = {
         );
       }
     } catch (error) {
-      handleError(response, error);
+      handleError(500, response, error);
     }
   },
   updateUserProfile: async (request: Request, response: Response) => {
@@ -292,7 +292,7 @@ const userController = {
         return response.status(500).json({ message: 'Internal server error.' });
       }
     } catch (error) {
-      handleError(response, error);
+      handleError(500, response, error);
     }
   },
   updateUserRole: async (request: Request, response: Response) => {
@@ -314,7 +314,7 @@ const userController = {
         user
       );
     } catch (error) {
-      handleError(response, error);
+      handleError(500, response, error);
     }
   },
 };
