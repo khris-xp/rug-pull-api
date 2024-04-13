@@ -34,6 +34,7 @@ export type DataResponseType = {
     | AuthResponseType
     | UpdateWriteOpResult
     | UploadType
+    | boolean
     | null;
 };
 
@@ -57,4 +58,5 @@ export type DataType =
   | UpdateWriteOpResult
   | AuthResponseType
   | UploadType
+  | boolean
   | null;

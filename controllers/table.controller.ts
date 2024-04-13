@@ -1,4 +1,6 @@
 import { Request, Response } from 'express';
+import Booking from '../models/booking.model';
+import Table from '../models/tabel.model';
 import TableRepository from '../repositories/table.repository';
 import { handleError } from '../utils/error.utils';
 import { successResponseStatus } from '../utils/response.utils';
@@ -112,6 +114,28 @@ const tableController = {
     try {
       const table = await TableRepository.findOne({ _id: request.params.id });
       return successResponseStatus(response, 'Get table successfully', table);
+    } catch (error) {
+      return handleError(500, response, error);
+    }
+  },
+
+  checkTableAlreadyBooked: async (request: Request, response: Response) => {
+    try {
+      const { table_id, start_time, end_time } = request.body;
+
+      const booking = await Booking.findOne({
+        table_id,
+        start_time: { $lte: start_time },
+        end_time: { $gte: end_time },
+      });
+
+      const isBooked = !!booking;
+
+      return successResponseStatus(
+        response,
+        'Check table already booked',
+        isBooked
+      );
     } catch (error) {
       return handleError(500, response, error);
     }
