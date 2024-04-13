@@ -317,6 +317,28 @@ const userController = {
       handleError(500, response, error);
     }
   },
+  updateUserPoint: async (request: Request, response: Response) => {
+    try {
+      const userId = request.user?._id;
+      if (!userId) {
+        return response.status(400).json({ message: 'User does not exist.' });
+      }
+      const user = await UserRepository.findById(userId.toString());
+
+      const { point } = request.body;
+      if (user) {
+        user.point = point || user.point;
+        await user.save();
+      }
+      return successResponseStatus(
+        response,
+        'Update user point successfully.',
+        user
+      );
+    } catch (error) {
+      handleError(500, response, error);
+    }
+  },
 };
 
 export default userController;
