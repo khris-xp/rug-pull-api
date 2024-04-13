@@ -1,8 +1,9 @@
-import { UpdateWriteOpResult } from 'mongoose';
+import { Types, UpdateWriteOpResult } from 'mongoose';
 import { AuthResponseType } from './auth.type';
 import { BoardGameType, CommonBoardGameType } from './board-game';
 import { BookingType, CommonBookingType } from './booking.type';
 import { CategoryType } from './category.type';
+import { PaymentType } from './payment.type';
 import { RoomType } from './room.type';
 import { StatusType } from './status.type';
 import { TableType } from './table.type';
@@ -31,6 +32,7 @@ export type DataResponseType = {
     | BoardGameType
     | CommonBookingType
     | BookingType
+    | Object
     | AuthResponseType
     | UpdateWriteOpResult
     | UploadType
@@ -58,5 +60,6 @@ export type DataType =
   | UpdateWriteOpResult
   | AuthResponseType
   | UploadType
+  | Object
   | boolean
   | null;

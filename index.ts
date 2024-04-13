@@ -7,6 +7,7 @@ import mongoose from 'mongoose';
 import boardGameRouter from './routes/board-game.route';
 import bookingRouter from './routes/booking.route';
 import categoryRouter from './routes/category.route';
+import paymentRouter from './routes/payment.route';
 import roomRouter from './routes/room.route';
 import statusRouter from './routes/status.route';
 import tableRouter from './routes/table.route';
@@ -50,6 +51,7 @@ app.use('/api/rooms', roomRouter);
 app.use('/api/board-games', boardGameRouter);
 app.use('/api/uploads', uploadRouter);
 app.use('/api/bookings', bookingRouter);
+app.use('/api/payments', paymentRouter);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
