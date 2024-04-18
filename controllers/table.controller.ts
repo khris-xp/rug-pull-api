@@ -141,6 +141,27 @@ const tableController = {
     }
   },
 
+  checkTableAlreadyInRoom: async (request: Request, response: Response) => {
+    try {
+      const { table_id } = request.body;
+
+      const tableisAlreadyinRoom = await Table.findOne({
+        _id: table_id,
+        room_id: { $ne: null },
+      });
+
+      const isAlreadyinRoom = !!tableisAlreadyinRoom;
+
+      return successResponseStatus(
+        response,
+        'Check table already in room',
+        isAlreadyinRoom
+      );
+    } catch (error) {
+      return handleError(500, response, error);
+    }
+  },
+
   /**
    * @swagger
    * /api/tables/{id}:
