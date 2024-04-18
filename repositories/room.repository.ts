@@ -22,6 +22,10 @@ export default class RoomRepository {
     return await Room.findById(id).updateOne(data);
   }
 
+  static async removeTable(id: string, tableId: string) {
+    return await Room.findById(id).updateOne({ $pull: { tables: tableId } });
+  }
+
   static async delete(id: string) {
     return await Room.findById(id).deleteOne();
   }

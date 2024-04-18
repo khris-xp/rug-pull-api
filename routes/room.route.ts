@@ -9,6 +9,12 @@ roomRouter.get('/', roomController.findAll);
 roomRouter.post('/', authUser, authAdmin, roomController.create);
 roomRouter.get('/:id', roomController.findById);
 roomRouter.put('/:id', authUser, authAdmin, roomController.update);
+roomRouter.put(
+  '/:id/remove-table',
+  authUser,
+  authAdmin,
+  roomController.removeTable
+);
 roomRouter.delete('/:id', authUser, authAdmin, roomController.delete);
 
 export default roomRouter;

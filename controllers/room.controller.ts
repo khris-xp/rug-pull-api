@@ -49,6 +49,16 @@ const roomController = {
         return handleError(500, res, error);
       });
   },
+  removeTable(req: Request, res: Response) {
+    const { table_id } = req.body;
+    RoomRepository.removeTable(req.params.id, table_id)
+      .then((room) => {
+        return successResponseStatus(res, 'Remove table from room successfully', room);
+      })
+      .catch((error) => {
+        return handleError(500, res, error);
+      });
+  },
   delete(req: Request, res: Response) {
     RoomRepository.delete(req.params.id)
       .then((room) => {
