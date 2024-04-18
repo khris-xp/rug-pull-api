@@ -26,6 +26,27 @@ export default class BoardGameRepository {
     };
   }
 
+  static async findAllWithCount(
+    paginationOptions: PaginationOptions,
+    sortingOptions: SortingOptions
+  ) {
+    const { page, limit } = paginationOptions;
+
+    const boardGames = await BoardGameRepository.findAll(
+      paginationOptions,
+      sortingOptions
+    );
+
+    const totalCount = await this.countAll();
+
+    return { boardGames, totalCount };
+  }
+
+  static async countAll(): Promise<number> {
+    const totalCount = await BoardGame.countDocuments();
+    return totalCount;
+  }
+
   static async create(data: BoardGameDto) {
     return await BoardGame.create(data);
   }

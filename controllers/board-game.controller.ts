@@ -13,25 +13,34 @@ const boardGameController = {
         sortBy = 'name',
         sortOrder = 'asc',
       } = req.query;
+
+      const pageNumber: number = +page;
+      const limitNumber: number = +limit;
+
       const paginationOptions: PaginationOptions = {
-        page: +page,
-        limit: +limit,
+        page: pageNumber,
+        limit: limitNumber,
       };
+
       const sortingOptions: SortingOptions = {
         field: sortBy as string,
         order: sortOrder as 'asc' | 'desc',
       };
 
-      const boardGames = await BoardGameRepository.findAll(
-        paginationOptions,
-        sortingOptions
-      );
+      const { boardGames, totalCount } =
+        await BoardGameRepository.findAllWithCount(
+          paginationOptions,
+          sortingOptions
+        );
 
-      return successResponseStatus(
-        res,
-        'Get board games successfully',
-        boardGames
-      );
+      const totalPages = Math.ceil(totalCount / limitNumber);
+
+      return successResponseStatus(res, 'Get board games successfully', {
+        boardGames,
+        totalPages,
+        currentPage: pageNumber,
+        totalItems: totalCount,
+      });
     } catch (error) {
       return handleError(500, res, error);
     }
