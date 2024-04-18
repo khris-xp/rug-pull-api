@@ -30,7 +30,7 @@ class UploadRepository {
 
       cloudinary.uploader.upload(
         file.tempFilePath,
-        { folder: 'Careervio' },
+        { folder: 'Rug Pull' },
         (
           err: cloudinaryResult.UploadApiErrorResponse | null,
           result: cloudinaryResult.UploadApiResponse | undefined
