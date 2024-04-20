@@ -29,7 +29,7 @@ export const setRefreshTokenCookie = (
 ) => {
   response.cookie('refreshToken', refreshToken, {
     httpOnly: true,
-    path: '/user/refresh_token',
+    path: '/api/auth/refresh-token',
     maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   });
 };
