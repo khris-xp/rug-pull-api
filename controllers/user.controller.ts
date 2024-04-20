@@ -86,6 +86,7 @@ const userController = {
 
       return successResponseStatus(response, 'Register successfully.', {
         accessToken,
+        refreshToken,
       });
     } catch (error) {
       handleError(500, response, error);
