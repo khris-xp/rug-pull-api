@@ -27,7 +27,7 @@ const paymentController = {
       const user_id = String(req?.user?._id);
       const booking = await BookingRepository.findById(bookingId);
       if (!booking) {
-        return errorResponseStatus(res, 'Booking not found', null);
+        return errorResponseStatus(res, 'Booking not found', null, 400);
       }
       const data = { booking: bookingId, total, status, user: user_id };
       const payment = await PaymentRepository.create(data);
@@ -63,7 +63,7 @@ const paymentController = {
       const { id } = req.params;
       const payment = await PaymentRepository.findById(id);
       if (!payment) {
-        return errorResponseStatus(res, 'Payment not found.', null);
+        return errorResponseStatus(res, 'Payment not found.', null, 400);
       }
 
       return successResponseStatus(res, 'Get payment successfully.', payment);
