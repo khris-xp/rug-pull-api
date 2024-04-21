@@ -19,14 +19,15 @@ export function successResponseStatus(
 export function errorResponseStatus(
   response: Response,
   message: string,
-  data: DataType
+  data: DataType,
+  status: number
 ): Response {
   const dataResponse: DataResponseType = {
-    status: 400,
+    status: status,
     message: message,
     success: false,
     data: data,
   };
 
-  return response.status(400).json(dataResponse);
+  return response.status(status).json(dataResponse);
 }
