@@ -37,16 +37,15 @@ const paymentController = {
             unit_amount: total,
           },
           quantity: 1,
-        }
+        },
       ];
-      
 
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['promptpay'],
         line_items: lineItems,
         mode: 'payment',
-        success_url: `http://localhost:3000/payment/success`,
-        cancel_url: `http://localhost:3000/payment/cancel`,
+        success_url: `https://rug-pull-mocha.vercel.app/payment-success`,
+        cancel_url: `https://rug-pull-mocha.vercel.app/cancel`,
       });
 
       const paymentData = payment.toObject();
