@@ -19,27 +19,19 @@ export default class BoardGameRepository {
       .limit(limit)
       .lean();
 
-    return {
-      data: boardGames,
-      page,
-      limit,
-    };
+    return boardGames;
   }
 
   static async findAllWithCount(
     paginationOptions: PaginationOptions,
     sortingOptions: SortingOptions
   ) {
-    const { page, limit } = paginationOptions;
-
     const boardGames = await BoardGameRepository.findAll(
       paginationOptions,
       sortingOptions
     );
 
-    const totalCount = await this.countAll();
-
-    return { boardGames, totalCount };
+    return boardGames;
   }
 
   static async countAll(): Promise<number> {

@@ -19,11 +19,24 @@ export default class BookingRepository {
       .limit(limit)
       .lean();
 
-    return {
-      data: bookings,
-      page,
-      limit,
-    };
+    return bookings;
+  }
+
+  static async findAllWithCount(
+    paginationOptions: PaginationOptions,
+    sortingOptions: SortingOptions
+  ) {
+    const bookings = await BookingRepository.findAll(
+      paginationOptions,
+      sortingOptions
+    );
+
+    return bookings;
+  }
+
+  static async countAll(): Promise<number> {
+    const totalCount = await Booking.countDocuments();
+    return totalCount;
   }
 
   static async create(data: BookingDto) {

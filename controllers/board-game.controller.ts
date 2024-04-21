@@ -27,11 +27,12 @@ const boardGameController = {
         order: sortOrder as 'asc' | 'desc',
       };
 
-      const { boardGames, totalCount } =
-        await BoardGameRepository.findAllWithCount(
-          paginationOptions,
-          sortingOptions
-        );
+      const boardGames = await BoardGameRepository.findAllWithCount(
+        paginationOptions,
+        sortingOptions
+      );
+
+      const totalCount = await BoardGameRepository.countAll();
 
       const totalPages = Math.ceil(totalCount / limitNumber);
 

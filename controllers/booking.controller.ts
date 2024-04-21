@@ -14,21 +14,34 @@ const bookingController = {
         sortBy = 'start_time',
         sortOrder = 'asc',
       } = req.query;
+
+      const pageNumber: number = +page;
+      const limitNumber: number = +limit;
+
       const paginationOptions: PaginationOptions = {
-        page: +page,
-        limit: +limit,
+        page: pageNumber,
+        limit: limitNumber,
       };
       const sortingOptions: SortingOptions = {
         field: sortBy as string,
         order: sortOrder as 'asc' | 'desc',
       };
 
-      const bookings = await BookingRepository.findAll(
+      const bookings = await BookingRepository.findAllWithCount(
         paginationOptions,
         sortingOptions
       );
 
-      return successResponseStatus(res, 'Get bookings successfully', bookings);
+      const totalCount = await BookingRepository.countAll();
+
+      const totalPages = Math.ceil(totalCount / +limit);
+
+      return successResponseStatus(res, 'Get bookings successfully', {
+        bookings,
+        totalPages,
+        currentPage: +page,
+        totalItems: totalCount,
+      });
     } catch (error) {
       return handleError(500, res, error);
     }
