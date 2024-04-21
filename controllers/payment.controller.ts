@@ -65,7 +65,6 @@ const paymentController = {
       if (!payment) {
         return errorResponseStatus(res, 'Payment not found.', null, 400);
       }
-
       return successResponseStatus(res, 'Get payment successfully.', payment);
     } catch (error) {
       return handleError(500, res, error);
