@@ -27,15 +27,20 @@ const paymentController = {
       const user_id = String(req?.user?._id);
       const data = { booking: bookingId, total, status, user: user_id };
       const payment = await PaymentRepository.create(data);
-      const lineItems = {
-        price_data: {
-          currency: 'thb',
-          booking_data: {
-            id: bookingId,
+      const lineItems = [
+        {
+          price_data: {
+            currency: 'thb',
+            product_data: {
+              name: 'Booking',
+            },
+            unit_amount: total,
           },
-          unit_amount: total,
-        },
-      };
+          quantity: 1,
+        }
+      ];
+      
+
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['promptpay'],
         line_items: lineItems,
