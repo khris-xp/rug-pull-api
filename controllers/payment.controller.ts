@@ -25,19 +25,15 @@ const paymentController = {
       const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
       const { bookingId, total, status } = req.body;
       const user_id = String(req?.user?._id);
-      const booking = await BookingRepository.findById(bookingId);
-      if (!booking) {
-        return errorResponseStatus(res, 'Booking not found', null, 400);
-      }
       const data = { booking: bookingId, total, status, user: user_id };
       const payment = await PaymentRepository.create(data);
       const lineItems = {
         price_data: {
           currency: 'thb',
           booking_data: {
-            id: booking.id,
+            id: bookingId,
           },
-          unit_amount: booking.total_price,
+          unit_amount: total,
         },
       };
       const session = await stripe.checkout.sessions.create({
