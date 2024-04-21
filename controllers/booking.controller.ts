@@ -1,4 +1,5 @@
 import { request, Request, Response } from 'express';
+import Booking from '../models/booking.model';
 import BookingRepository from '../repositories/booking.repository';
 import { PaginationOptions, SortingOptions } from '../types/options.type';
 import { handleError } from '../utils/error.utils';
@@ -79,15 +80,25 @@ const bookingController = {
         return handleError(500, res, error);
       });
   },
-  findByUserId(req: Request, res: Response) {
-    const user_id = request.user?._id;
-    BookingRepository.findOne({ user: user_id })
-      .then((booking) => {
-        return successResponseStatus(res, 'Get booking successfully', booking);
-      })
-      .catch((error) => {
-        return handleError(500, res, error);
-      });
+  async findByUserId(req: Request, res: Response) {
+    try {
+      const userId = req.user?._id;
+      const { user_id } = req.body;
+      if (!user_id && !userId) {
+        return handleError(400, res, 'User ID is required');
+      }
+      if (user_id !== userId && req.user?.role !== 'admin') {
+        return handleError(
+          403,
+          res,
+          'You are not authorized to access this resource'
+        );
+      }
+      const bookings = await Booking.find({ user: user_id }).lean();
+      return successResponseStatus(res, 'Get bookings successfully', bookings);
+    } catch (error) {
+      return handleError(500, res, error);
+    }
   },
   updateBookingStatus(req: Request, res: Response) {
     const { id, status } = req.body;

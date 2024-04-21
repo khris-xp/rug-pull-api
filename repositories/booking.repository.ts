@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongoose';
 import { BookingDto } from '../dto/booking.dto';
 import Booking from '../models/booking.model';
 import { FilterType } from '../types/filter.type';
@@ -49,6 +50,10 @@ export default class BookingRepository {
 
   static async findById(id: string) {
     return await Booking.findById(id);
+  }
+
+  static async findByUserId(userId: string) {
+    return await Booking.find({ user: userId }).lean();
   }
 
   static async update(id: string, data: BookingDto) {
